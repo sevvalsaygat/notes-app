@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Select from 'react-select'
 
 function Index({ tags }) {
-  
+
   const [notes, setNotes] = useState([])
+
+  const options = tags.map((tag) => {
+    return { value: tag.id, label: tag.name }
+  })
 
   useEffect(() => {
     axios
@@ -23,6 +28,7 @@ function Index({ tags }) {
           </li>
         ))}
       </ul>
+      <Select options={options} />
     </div>
   )
 }
